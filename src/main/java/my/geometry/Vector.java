@@ -50,4 +50,41 @@ public class Vector {
       return output;
    }
 
+   public static Vector rotateAbout(Vector vector, double angle, Point point) {
+       double cos = Math.cos(angle);
+       double sin = Math.sin(angle);
+       Vector output = new Vector();
+       double x = point.getX() + ((vector.getX() - point.getX()) * cos - (vector.getY() - point.getY()) * sin);
+       output.setY(point.getY() + ((vector.getX() - point.getX()) * sin + (vector.getY() - point.getY()) * cos));
+       output.setX(x);
+       return output;
+   }
+
+   public static Vector normalise(Vector vector) {
+      double magnitude = Vector.magnitude(vector);
+      if (magnitude == 0) {
+          return new Vector(0,0);
+      }
+      return  new Vector( vector.getX()/ magnitude, vector.getY()/magnitude);
+   }
+
+   public static double dot(Vector vectorA, Vector vectorB) {
+      return vectorA.getX()*vectorB.getX() + vectorA.getY() + vectorB.getY();
+   }
+
+   public static double cross(Vector vectorA, Vector vectorB) {
+       return vectorA.getX()*vectorB.getY() - vectorA.getY() + vectorB.getX();
+   }
+
+   public static  double cross3(Vector vectorA, Vector vectorB, Vector vectorC) {
+       return (vectorB.x - vectorA.x) * (vectorC.y - vectorA.y) - (vectorB.y - vectorA.y) * (vectorC.x - vectorA.x);
+   }
+
+   public static  Vector add(Vector vectorA, Vector vectorB){
+      return new Vector(vectorA.getX()+ vectorB.getX(),vectorA.getY()+vectorB.getY());
+   }
+
+   public static Vector sub(Vector vectorA, Vector vectorB){
+       return new Vector(vectorA.getX()- vectorB.getX(),vectorA.getY()- vectorB.getY());
+   }
 }
