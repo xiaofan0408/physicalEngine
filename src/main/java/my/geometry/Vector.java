@@ -87,4 +87,26 @@ public class Vector {
    public static Vector sub(Vector vectorA, Vector vectorB){
        return new Vector(vectorA.getX()- vectorB.getX(),vectorA.getY()- vectorB.getY());
    }
+
+   public static Vector mult(Vector vector, double scalar) {
+      return  new Vector(vector.getX() * scalar, vector.getY() * scalar);
+   }
+
+   public  static  Vector div(Vector vector, double scalar) {
+      return new Vector(vector.getX() / scalar, vector.getY() / scalar);
+   }
+
+   public  static Vector perp(Vector vector, boolean negate) {
+      double ng = negate == true? 1:-1;
+      return new Vector(ng * (-vector.getY()), ng * vector.getX());
+   }
+
+   public static  Vector neg(Vector vector){
+      return new Vector(-vector.getX(), -vector.getY());
+   }
+
+   public static double angle(Vector vectorA, Vector vectorB) {
+       return Math.atan2(vectorB.getY() - vectorA.getY(), vectorB.getX() - vectorA.getX());
+   }
+
 }
